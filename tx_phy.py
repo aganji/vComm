@@ -3,7 +3,7 @@ import time
 
 class vlc_tx(object):
 	"""docstring for vlc_tx"""
-	def __init__(self, arg):
+	def __init__(self):
 		super(vlc_tx, self).__init__()
 		#self.arg = arg
 
