@@ -29,7 +29,7 @@ class vlc_tx(object):
 		if enableManchester == None:
 			enableManchester = self.enableManchester
 		for bit in bit_stream:
-			op = fec_bit(bit)
+			op = self.fec_bit(bit)
 			for bitVal in op:
 				send_bit(bitVal,enableManchester)
 
