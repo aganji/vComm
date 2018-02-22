@@ -16,7 +16,7 @@ class vlc_tx(object):
 		GPIO.setup(ledPin,GPIO.OUT)
 
 
-	def fec_bit(bit):
+	def fec_bit(self,bit):
 		
 		opList = []
 		bitVal = int(bit)
@@ -25,13 +25,13 @@ class vlc_tx(object):
 		
 		return opList
 
-	def send_data(bit_stream,enableManchester=self.enableManchester):
+	def send_data(self,bit_stream,enableManchester=self.enableManchester):
 		for bit in bit_stream:
 			op = fec_bit(bit)
 			for bitVal in op:
 				send_bit(bitVal,enableManchester)
 
-	def send_bit(bit,enableManchester=self.enableManchester):
+	def send_bit(self,bit,enableManchester=self.enableManchester):
 		if enableManchester == True:
 			if bit == 1:
 				GPIO.output(self.ledPin,GPIO.HIGH)
@@ -51,5 +51,5 @@ class vlc_tx(object):
 				GPIO.output(self.ledPin,GPIO.LOW)
 				time.sleep(self.txDelay)
 
-	def cleanuo():
+	def cleanuo(self):
 		GPIO.cleanup()
