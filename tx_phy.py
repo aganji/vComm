@@ -25,13 +25,17 @@ class vlc_tx(object):
 		
 		return opList
 
-	def send_data(self,bit_stream,enableManchester=self.enableManchester):
+	def send_data(self,bit_stream,enableManchester=None):
+		if enableManchester == None:
+			enableManchester = self.enableManchester
 		for bit in bit_stream:
 			op = fec_bit(bit)
 			for bitVal in op:
 				send_bit(bitVal,enableManchester)
 
-	def send_bit(self,bit,enableManchester=self.enableManchester):
+	def send_bit(self,bit,enableManchester=None):
+		if enableManchester == None:
+			enableManchester = self.enableManchester
 		if enableManchester == True:
 			if bit == 1:
 				GPIO.output(self.ledPin,GPIO.HIGH)
