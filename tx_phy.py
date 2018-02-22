@@ -13,7 +13,7 @@ class vlc_tx(object):
 		self.enableManchester = True
 
 		GPIO.setmode(GPIO.BOARD)
-		GPIO.setup(ledPin,GPIO.OUT)
+		GPIO.setup(self.ledPin,GPIO.OUT)
 
 
 	def fec_bit(self,bit):
