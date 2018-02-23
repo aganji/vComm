@@ -5,5 +5,8 @@ sys.path.append('..')
 # import vlc phy
 import tx_phy
 
+# create phy objct
+phyObj = tx_phy.vlc_tx()
 # Send test data
-tx_phy.send_data('1101001')
+phyObj.send_data('1101001')
+phyObj.cleanuo()

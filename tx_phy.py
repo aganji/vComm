@@ -3,14 +3,27 @@ import time
 
 class vlc_tx(object):
 	"""docstring for vlc_tx"""
-	def __init__(self):
+	def __init__(self,txDelay=None,ledPin=None,fecFactor=None,enableManchester=None):
 		super(vlc_tx, self).__init__()
-		#self.arg = arg
+		if txDelay == None:
+			self.txDelay = 1
+		else:
+			self.txDelay = txDelay
 
-		self.txDelay = 1
-		self.ledPin = 3
-		self.fecFactor = 3
-		self.enableManchester = True
+		if ledPin == None:	
+			self.ledPin = 3
+		else:
+			self.ledPin = ledPin
+
+		if fecFactor == None:	
+			self.fecFactor = 3
+		else:
+			self.fecFactor = fecFactor
+
+		if enableManchester == None:
+			self.enableManchester = True
+		else:
+			self.enableManchester = enableManchester
 
 		GPIO.setmode(GPIO.BOARD)
 		GPIO.setup(self.ledPin,GPIO.OUT)
