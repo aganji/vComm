@@ -10,12 +10,12 @@ class vlc_tx(object):
 		else:
 			self.txDelay = txDelay
 
-		if ledPin == None:	
+		if ledPin == None:
 			self.ledPin = 3
 		else:
 			self.ledPin = ledPin
 
-		if fecFactor == None:	
+		if fecFactor == None:
 			self.fecFactor = 3
 		else:
 			self.fecFactor = fecFactor
@@ -25,8 +25,9 @@ class vlc_tx(object):
 		else:
 			self.enableManchester = enableManchester
 
-		GPIO.setmode(GPIO.BOARD)
-		GPIO.setup(self.ledPin,GPIO.OUT)
+		self.GPIO = GPIO
+		self.GPIO.setmode(self.GPIO.BOARD)
+		self.GPIO.setup(self.ledPin,self.GPIO.OUT)
 
 
 	def fec_bit(self,bit):
@@ -52,22 +53,22 @@ class vlc_tx(object):
 			enableManchester = self.enableManchester
 		if enableManchester == True:
 			if bit == 1:
-				GPIO.output(self.ledPin,GPIO.HIGH)
+				self.GPIO.output(self.ledPin,self.GPIO.LOW)
 				time.sleep(self.txDelay)
-				GPIO.output(self.ledPin,GPIO.LOW)
-				time.sleep(self.txDelay)	
+				self.GPIO.output(self.ledPin,self.GPIO.HIGH)
+				time.sleep(self.txDelay)
 			elif bit == 0:
-				GPIO.output(self.ledPin,GPIO.LOW)
+				self.GPIO.output(self.ledPin,self.GPIO.HIGH)
 				time.sleep(self.txDelay)
-				GPIO.output(self.ledPin,GPIO.HIGH)
+				self.GPIO.output(self.ledPin,self.GPIO.LOW)
 				time.sleep(self.txDelay)
 		else:
 			if bit == 1:
-				GPIO.output(self.ledPin,GPIO.HIGH)
+				self.GPIO.output(self.ledPin,self.GPIO.HIGH)
 				time.sleep(self.txDelay)
 			elif bit == 0:
-				GPIO.output(self.ledPin,GPIO.LOW)
+				self.GPIO.output(self.ledPin,self.GPIO.LOW)
 				time.sleep(self.txDelay)
 
-	def cleanuo(self):
-		GPIO.cleanup()
+	def cleanup(self):
+		self.GPIO.cleanup()
